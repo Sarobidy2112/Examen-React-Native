@@ -60,14 +60,14 @@ export default function ArticleDetail() {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Image fictive */}
+      {/* Image fictive de l'article */}
       <Image
-        source={{ uri: `https://picsum.photos/600/300?random=${id}` }}
+        source={{ uri: `https://picsum.photos/800/400?random=${id}` }}
         style={styles.articleImage}
         resizeMode="cover"
       />
 
-      {/* Article */}
+      {/* Contenu de l'article */}
       <View style={styles.articleContainer}>
         <Text style={styles.title}>{article.title}</Text>
         <Text style={styles.body}>{article.body}</Text>
@@ -76,7 +76,7 @@ export default function ArticleDetail() {
       {/* Commentaires */}
       <View style={styles.commentsSection}>
         <Text style={styles.commentsTitle}>
-          Commentaires ({comments.length})
+          💬 Commentaires ({comments.length})
         </Text>
 
         {loadingComments ? (
@@ -88,9 +88,16 @@ export default function ArticleDetail() {
             scrollEnabled={false}
             renderItem={({ item }) => (
               <View style={styles.commentContainer}>
-                <Text style={styles.commentName}>{item.name}</Text>
-                <Text style={styles.commentEmail}>{item.email}</Text>
-                <Text style={styles.commentBody}>{item.body}</Text>
+                {/* Avatar généré fictivement */}
+                <Image
+                  source={{ uri: `https://i.pravatar.cc/100?u=${item.email}` }}
+                  style={styles.avatar}
+                />
+                <View style={styles.commentTextContainer}>
+                  <Text style={styles.commentName}>{item.name}</Text>
+                  <Text style={styles.commentEmail}>{item.email}</Text>
+                  <Text style={styles.commentBody}>{item.body}</Text>
+                </View>
               </View>
             )}
           />
@@ -107,7 +114,7 @@ export default function ArticleDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
   },
   loadingContainer: {
     flex: 1,
@@ -128,58 +135,73 @@ const styles = StyleSheet.create({
   },
   articleImage: {
     width: '100%',
-    height: 200,
+    height: 220,
   },
   articleContainer: {
-    padding: 20,
+    padding: 22,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
-    marginBottom: 20,
+    marginBottom: 25,
   },
   title: {
-    fontSize: 24,
-    fontWeight: '700',
+    fontSize: 26,
+    fontWeight: '800',
     marginBottom: 15,
     color: '#111',
+    lineHeight: 32,
   },
   body: {
     fontSize: 16,
-    lineHeight: 26,
+    lineHeight: 28,
     color: '#444',
   },
   commentsSection: {
     paddingHorizontal: 20,
+    paddingBottom: 40,
   },
   commentsTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#111',
-    marginBottom: 15,
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#1e1e1e',
+    marginBottom: 20,
   },
   commentContainer: {
-    backgroundColor: '#f1f1f1',
-    borderRadius: 10,
+    flexDirection: 'row',
+    backgroundColor: '#f8f8f8',
+    borderRadius: 12,
     padding: 15,
-    marginBottom: 15,
-    borderColor: '#e0e0e0',
-    borderWidth: 1,
+    marginBottom: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginRight: 12,
+  },
+  commentTextContainer: {
+    flex: 1,
   },
   commentName: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 5,
+    color: '#222',
+    marginBottom: 2,
   },
   commentEmail: {
     fontSize: 13,
-    color: '#666',
-    marginBottom: 8,
+    color: '#888',
+    marginBottom: 6,
     fontStyle: 'italic',
   },
   commentBody: {
     fontSize: 14,
-    lineHeight: 22,
-    color: '#555',
+    lineHeight: 20,
+    color: '#444',
   },
   noComments: {
     fontSize: 14,

@@ -38,7 +38,7 @@ export default function ArticlesScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Liste des articles</Text>
+      <Text style={styles.header}>📰 Liste des articles</Text>
 
       <FlatList
         data={articles}
@@ -47,19 +47,17 @@ export default function ArticlesScreen() {
         renderItem={({ item }) => (
           <Link href={`/articles/${item.id}`} asChild>
             <TouchableOpacity style={styles.card}>
-              {/* Image fictive */}
               <Image
                 source={{ uri: `https://picsum.photos/400/200?random=${item.id}` }}
                 style={styles.cardImage}
               />
 
               <View style={styles.cardContent}>
-                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.cardTitle} numberOfLines={2}>{item.title}</Text>
                 <Text numberOfLines={2} style={styles.cardBody}>
                   {item.body}
                 </Text>
 
-                {/* Bouton voir les détails */}
                 <Link href={`/articles/${item.id}`} asChild>
                   <TouchableOpacity style={styles.detailButton}>
                     <Text style={styles.detailButtonText}>Voir les détails</Text>
@@ -83,11 +81,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   header: {
-    fontSize: 26,
-    fontWeight: 'bold',
+    fontSize: 28,
+    fontWeight: '800',
     textAlign: 'center',
-    marginVertical: 15,
-    color: '#111',
+    marginVertical: 20,
+    color: '#1a1a1a',
   },
   loadingContainer: {
     flex: 1,
@@ -98,48 +96,48 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 10,
     fontSize: 16,
-    color: '#333',
+    color: '#444',
   },
   card: {
-    backgroundColor: '#f9f9f9',
-    borderRadius: 12,
-    marginBottom: 20,
+    backgroundColor: '#fefefe',
+    borderRadius: 16,
+    marginBottom: 25,
     overflow: 'hidden',
-    elevation: 3, // Android shadow
-    shadowColor: '#000', // iOS shadow
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowRadius: 6,
   },
   cardImage: {
     width: '100%',
-    height: 160,
+    height: 170,
   },
   cardContent: {
-    padding: 15,
+    padding: 16,
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#111',
-    marginBottom: 8,
+    fontWeight: '700',
+    color: '#222',
+    marginBottom: 6,
   },
   cardBody: {
     fontSize: 14,
-    color: '#555',
+    color: '#666',
     lineHeight: 20,
-    marginBottom: 10,
+    marginBottom: 12,
   },
   detailButton: {
-    backgroundColor: '#007bff',
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    borderRadius: 6,
+    backgroundColor: '#ff6b6b',
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 8,
     alignSelf: 'flex-start',
   },
   detailButtonText: {
-    color: '#ffffff',
+    color: '#fff',
+    fontWeight: '600',
     fontSize: 14,
-    fontWeight: '500',
   },
 });
